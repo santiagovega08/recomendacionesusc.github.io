@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recomendaciones USC</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style id="app-style">
+    /* Base styles */
+    :root {
+      --primary-color: #002147;
+      --white: #ffffff;
+      --light-gray: #f5f5f5;
+      --hover-blue: #003366;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--white);
+      color: #333;
+      overflow-x: hidden;
+      padding-bottom: 70px;
+    }
+    
+    /* Custom container */
+    .custom-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* Custom grid system */
+    .custom-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px;
+    }
+    
+    .custom-col {
+      padding: 0 15px;
+      flex: 1;
+    }
+    
+    .custom-col-6 {
+      width: 50%;
+      padding: 0 15px;
+    }
+    
+    .custom-col-4 {
+      width: 33.333%;
+      padding: 0 15px;
+    }
+    
+    /* Header styles */
+    .header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1.5rem 0;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .header p {
+      font-weight: 300;
+      margin-bottom: 0;
+    }
+    
+    /* Custom navbar */
+    .navbar {
+      background-color: var(--primary-color);
+      padding: 1rem 0;
+    }
+    
+    .navbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .navbar-brand {
+      color: var(--white);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.25rem;
+    }
+    
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .navbar-item {
+      margin: 0 0.5rem;
+    }
+    
+    .navbar-link {
+      color: var(--white);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 0.5rem;
+    }
+    
+    .navbar-link:hover {
+      color: var(--light-gray);
+    }
+    
+    .navbar-toggler {
+      display: none;
+      background: none;
+      border: 1px solid var(--white);
+      color: var(--white);
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    
+    /* Faculty buttons */
+    .faculty-btn {
+      background-color: var(--primary-color);
+      border: none;
+      color: var(--white);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+      width: 100%;
+      font-weight: 500;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 150px;
+      cursor: pointer;
+    }
+    
+    .faculty-btn:hover {
+      background-color: var(--hover-blue);
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .faculty-btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      background-color: #001a38; /* Darker color when clicked */
+    }
+    
+    .faculty-btn i {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    /* Faculty header */
+    .faculty-header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .faculty-header h2 {
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+    
+    /* Back button */
+    .back-btn {
+      background-color: transparent;
+      border: 1px solid var(--white);
+      color: var(--white);
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .back-btn:hover {
+      background-color: var(--white);
+      color: var(--primary-color);
+    }
+    
+    /* Custom accordion */
+    .accordion {
+      margin-bottom: 2rem;
+    }
+    
+    .accordion-item {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .accordion-header {
+      margin: 0;
+    }
+    
+    .accordion-button {
+      width: 100%;
+      padding: 1rem;
+      text-align: left;
+      background-color: var(--white);
+      border: none;
+      position: relative;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    
+    .accordion-button:after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 1rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .accordion-button.collapsed:after {
+      transform: rotate(-90deg);
+    }
+    
+    .accordion-button:not(.collapsed) {
+      background-color: rgba(0, 33, 71, 0.1);
+      color: var(--primary-color);
+    }
+    
+    .accordion-collapse {
+      display: none;
+    }
+    
+    .accordion-collapse.show {
+      display: block;
+    }
+    
+    .accordion-body {
+      padding: 1rem;
+    }
+    
+    /* Recommendation styles */
+    .recommended {
+      background-color: #e6f7e6;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .not-recommended {
+      background-color: #fceaea;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .professor-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .professor-list li {
+      padding: 0.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .professor-list li:last-child {
+      border-bottom: none;
+    }
+    
+    /* Opinions container */
+    .opinions-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    
+    .opinions-container h2 {
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+    
+    .google-form {
+      width: 100%;
+      height: 700px;
+      border: none;
+      margin-bottom: 2rem;
+    }
+    
+    .thank-you {
+      padding: 1rem;
+      background-color: var(--light-gray);
+      border-radius: 5px;
+      margin-bottom: 2rem;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1.5rem 0;
+      text-align: center;
+    }
+    
+    footer a {
+      color: var(--white);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    footer a:hover {
+      color: var(--light-gray);
+      text-decoration: underline;
+    }
+    
+    /* Page visibility */
+    .content-page {
+      display: none;
+    }
+    
+    .active-page {
+      display: block;
+    }
+    
+    /* Search box */
+    .search-container {
+      padding: 2rem 0;
+    }
+    
+    .search-box {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    #search-input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .search-results {
+      position: absolute;
+      width: 100%;
+      background: white;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 0 5px 5px;
+      max-height: 300px;
+      overflow-y: auto;
+      display: none;
+      z-index: 10;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .search-result-item {
+      padding: 0.75rem;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+    
+    .search-result-item:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+    
+    /* Welcome container */
+    .welcome-container {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    
+    .welcome-image {
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+    }
+    
+    /* Loader overlay */
+    .loader-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .loader-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .loader i {
+      font-size: 3rem;
+      color: var(--primary-color);
+      animation: spin 1.5s infinite linear;
+    }
+    
+    .loader p {
+      margin-top: 15px;
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+    
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .custom-col-6, .custom-col-4 {
+        width: 100%;
+      }
+      
+      .navbar-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--primary-color);
+        padding: 1rem;
+      }
+      
+      .navbar-menu.show {
+        display: flex;
+      }
+      
+      .navbar-toggler {
+        display: block;
+      }
+      
+      .navbar-inner {
+        flex-wrap: wrap;
+      }
+      
+      .faculty-btn {
+        height: 120px;
+        padding: 1rem;
+      }
+      
+      .faculty-btn i {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Home Page -->
+  <div id="home-page" class="content-page active-page">
+    <header class="header">
+      <div class="custom-container">
+        <h1>Tus Profes</h1>
+        <p>Tu guía para elegir los mejores profesores en la USC</p>
+      </div>
+    </header>
+
+    <!-- Welcome message -->
+    <div class="custom-container welcome-container">
+      <h2 class="mb-4">¡Bienvenido a tu asistente académico!</h2>
+      <p class="lead mb-5">Descubre qué profesores son los mejores para cada materia según la experiencia de otros estudiantes de la USC.</p>
+      <div class="welcome-image mb-4">
+        <i class="fas fa-graduation-cap fa-5x"></i>
+      </div>
+      <p>Navega a través de las facultades o busca directamente tu materia para comenzar.</p>
+    </div>
+    
+    <!-- Search container moved to home page -->
+    <div class="custom-container search-container">
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Buscar materia...">
+        <div id="search-results" class="search-results"></div>
+      </div>
+    </div>
+
+    <!-- Faculty buttons moved to home page -->
+    <div class="custom-container">
+      <div class="custom-row">
+        <div class="custom-col-4 custom-col">
+          <button class="faculty-btn" data-faculty="ingenieria">
+            <i class="fas fa-cogs"></i>
+            <span>Ingeniería</span>
+          </button>
+        </div>
+        <div class="custom-col-4 custom-col">
+          <button class="faculty-btn" data-faculty="salud">
+            <i class="fas fa-heartbeat"></i>
+            <span>Salud</span>
+          </button>
+        </div>
+        <div class="custom-col-4 custom-col">
+          <button class="faculty-btn" data-faculty="derecho">
+            <i class="fas fa-gavel"></i>
+            <span>Derecho</span>
+          </button>
+        </div>
+        <div class="custom-col-4 custom-col">
+          <button class="faculty-btn" data-faculty="ciencias-basicas">
+            <i class="fas fa-atom"></i>
+            <span>Ciencias Básicas</span>
+          </button>
+        </div>
+        <div class="custom-col-4 custom-col">
+          <button class="faculty-btn" data-faculty="ciencias-economicas">
+            <i class="fas fa-chart-line"></i>
+            <span>Ciencias Económicas y Empresariales</span>
+          </button>
+        </div>
+        <div class="custom-col-4 custom-col">
+          <button class="faculty-btn" data-faculty="educacion">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Educación</span>
+          </button>
+        </div>
+        <div class="custom-col-4 custom-col">
+          <button class="faculty-btn" data-faculty="humanidades">
+            <i class="fas fa-book"></i>
+            <span>Humanidades</span>
+          </button>
+        </div>
+        <div class="custom-col-4 custom-col">
+          <button class="faculty-btn" data-faculty="artes">
+            <i class="fas fa-paint-brush"></i>
+            <span>Artes</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Faculty Pages -->
+  <div id="faculties-page" class="content-page">
+    <header class="faculty-header">
+      <div class="custom-container">
+        <h2 id="faculty-title">Facultades USC</h2>
+        <button class="back-btn" id="back-to-home-from-faculty">
+          <i class="fas fa-arrow-left"></i> Volver al inicio
+        </button>
+      </div>
+    </header>
+    
+    <!-- Accordion container for subjects -->
+    <div class="custom-container">
+      <div class="accordion" id="subjectsAccordion"></div>
+    </div>
+  </div>
+
+  <!-- Opinions Page -->
+  <div id="opinions-page" class="content-page">
+    <div class="faculty-header">
+      <div class="custom-container">
+        <h2>Envía tu opinión</h2>
+        <button class="back-btn" id="back-to-home-from-opinions">
+          <i class="fas fa-arrow-left"></i> Volver al inicio
+        </button>
+      </div>
+    </div>
+
+    <div class="opinions-container">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWvStTXCGnQCOYH4Lm5JLuduOwlN1iCYIkAiFR7DKQkQkpjA/viewform?embedded=true" class="google-form" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+      
+      <div class="thank-you">
+        <h4>¡Gracias por tu aporte!</h4>
+        <p>Tus comentarios nos ayudan a mejorar la experiencia de todos los estudiantes de la USC.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="custom-container">
+      <p>© 2025 Recomendaciones USC | <a href="https://www.usc.edu.co" target="_blank">Universidad Santiago de Cali</a></p>
+    </div>
+  </footer>
+
+  <!-- Loader Overlay -->
+  <div class="loader-overlay">
+    <div class="loader">
+      <i class="fas fa-chalkboard-teacher"></i>
+      <p>Cargando...</p>
+    </div>
+  </div>
+
+  <!-- Remove Bottom Navigation completely -->
+
+  <!-- Remove Bootstrap JS and update with vanilla JS -->
+  <script id="app-script">
+    // Facultades data
+    const facultiesData = {
+      'ingenieria': {
+        name: 'Facultad de Ingeniería',
+        subjects: [
+          {
+            name: 'Cálculo I',
+            recommendedProfessors: ['María Rodríguez', 'Juan Pérez', 'Laura Gómez'],
+            notRecommendedProfessors: ['Carlos Martínez', 'Ana López']
+          },
+          {
+            name: 'Física I',
+            recommendedProfessors: ['Pedro Sánchez', 'Diana Torres'],
+            notRecommendedProfessors: ['Fernando Ramírez', 'Catalina Díaz']
+          },
+          {
+            name: 'Programación I',
+            recommendedProfessors: ['Andrés Molina', 'Sofía Castro', 'Gabriel Hernández'],
+            notRecommendedProfessors: ['Julián Ortega']
+          }
+        ]
+      },
+      'salud': {
+        name: 'Facultad de Salud',
+        subjects: [
+          {
+            name: 'Anatomía',
+            recommendedProfessors: ['Carolina Jiménez', 'Héctor Morales'],
+            notRecommendedProfessors: ['Eduardo Pineda', 'Victoria Ruiz']
+          },
+          {
+            name: 'Bioquímica',
+            recommendedProfessors: ['Luisa Restrepo', 'Santiago Ortiz', 'Martha Cruz'],
+            notRecommendedProfessors: ['Roberto Vega']
+          }
+        ]
+      },
+      'derecho': {
+        name: 'Facultad de Derecho',
+        subjects: [
+          {
+            name: 'Derecho Civil',
+            recommendedProfessors: ['Jorge Mendoza', 'Valeria Estrada', 'Camilo Arango'],
+            notRecommendedProfessors: ['Daniela Osorio']
+          },
+          {
+            name: 'Derecho Penal',
+            recommendedProfessors: ['Ricardo Peña', 'Natalia Zúñiga'],
+            notRecommendedProfessors: ['Mauricio Toro', 'Carmen Valencia']
+          }
+        ]
+      },
+      'ciencias-basicas': {
+        name: 'Facultad de Ciencias Básicas',
+        subjects: [
+          {
+            name: 'Química General',
+            recommendedProfessors: ['Isabel Montes', 'Rafael Duque'],
+            notRecommendedProfessors: ['Gloria Patiño', 'Andrés Salazar']
+          },
+          {
+            name: 'Biología Celular',
+            recommendedProfessors: ['Patricia Hoyos', 'Simón Trujillo', 'Jaime Bernal'],
+            notRecommendedProfessors: ['Carmen Agudelo']
+          }
+        ]
+      },
+      'ciencias-economicas': {
+        name: 'Facultad de Ciencias Económicas y Empresariales',
+        subjects: [
+          {
+            name: 'Microeconomía',
+            recommendedProfessors: ['Claudia Mejía', 'Felipe Aristizábal', 'Óscar Giraldo'],
+            notRecommendedProfessors: ['David Bustos']
+          },
+          {
+            name: 'Contabilidad Financiera',
+            recommendedProfessors: ['Alejandro Correa', 'Marcela Rincón'],
+            notRecommendedProfessors: ['Sebastián López', 'Lucía Cardona']
+          }
+        ]
+      },
+      'educacion': {
+        name: 'Facultad de Educación',
+        subjects: [
+          {
+            name: 'Psicología Educativa',
+            recommendedProfessors: ['Marina Botero', 'Hugo Vargas'],
+            notRecommendedProfessors: ['Tatiana Gómez', 'Alberto Quintero']
+          },
+          {
+            name: 'Didáctica General',
+            recommendedProfessors: ['Paola Ríos', 'Gustavo Pineda', 'Andrea Zapata'],
+            notRecommendedProfessors: ['Javier Moncada']
+          }
+        ]
+      },
+      'humanidades': {
+        name: 'Facultad de Humanidades',
+        subjects: [
+          {
+            name: 'Filosofía Antigua',
+            recommendedProfessors: ['Esteban Valencia', 'Mariana Torres', 'José Escobar'],
+            notRecommendedProfessors: ['Cristina Duarte']
+          },
+          {
+            name: 'Literatura Colombiana',
+            recommendedProfessors: ['Federico Londoño', 'Sara Muñoz'],
+            notRecommendedProfessors: ['Leonardo Parra', 'Paula Castro']
+          }
+        ]
+      },
+      'artes': {
+        name: 'Facultad de Artes',
+        subjects: [
+          {
+            name: 'Historia del Arte',
+            recommendedProfessors: ['Daniela Franco', 'Nicolás Soto'],
+            notRecommendedProfessors: ['Alejandra Gil', 'Martín Reyes']
+          },
+          {
+            name: 'Fundamentos de Diseño',
+            recommendedProfessors: ['Verónica Martínez', 'Tomás Velasco', 'Carolina Herrera'],
+            notRecommendedProfessors: ['Antonio Delgado']
+          }
+        ]
+      }
+    };
+
+    // DOM elements
+    const homePage = document.getElementById('home-page');
+    const facultyPage = document.getElementById('faculties-page');
+    const opinionsPage = document.getElementById('opinions-page');
+    const facultyTitle = document.getElementById('faculty-title');
+    const subjectsAccordion = document.getElementById('subjectsAccordion');
+    const facultyBtns = document.querySelectorAll('.faculty-btn');
+    const backToHomeFromOpinionsBtn = document.getElementById('back-to-home-from-opinions');
+    const backToHomeFromFacultyBtn = document.getElementById('back-to-home-from-faculty');
+    const loaderOverlay = document.querySelector('.loader-overlay');
+
+    // Show page function
+    function showPage(pageId) {
+      // Show loader
+      loaderOverlay.classList.add('active');
+      
+      // Hide all pages
+      document.querySelectorAll('.content-page').forEach(page => {
+        page.classList.remove('active-page');
+      });
+      
+      // Show the new page if it exists
+      const newPage = document.getElementById(pageId);
+      if (newPage) {
+        newPage.classList.add('active-page');
+      } else {
+        console.error('Page not found:', pageId);
+      }
+      
+      // Hide loader after a brief delay
+      setTimeout(() => {
+        loaderOverlay.classList.remove('active');
+      }, 300);
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    // Custom accordion functionality
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('accordion-button')) {
+        const content = e.target.parentNode.nextElementSibling;
+        const isCollapsed = e.target.classList.contains('collapsed');
+        
+        // Close all other accordions
+        document.querySelectorAll('.accordion-collapse').forEach(item => {
+          if (item !== content) {
+            item.classList.remove('show');
+          }
+        });
+        
+        document.querySelectorAll('.accordion-button').forEach(btn => {
+          if (btn !== e.target) {
+            btn.classList.add('collapsed');
+          }
+        });
+        
+        // Toggle current accordion
+        if (isCollapsed) {
+          e.target.classList.remove('collapsed');
+          content.classList.add('show');
+        } else {
+          e.target.classList.add('collapsed');
+          content.classList.remove('show');
+        }
+      }
+    });
+
+    // Load faculty content
+    function loadFaculty(facultyId) {
+      const faculty = facultiesData[facultyId];
+      
+      if (!faculty) {
+        console.error('Faculty not found:', facultyId);
+        return;
+      }
+      
+      // Store last viewed faculty
+      localStorage.setItem('lastFacultyId', facultyId);
+      
+      // Set faculty title
+      facultyTitle.textContent = faculty.name;
+      
+      // Clear previous accordion content
+      subjectsAccordion.innerHTML = '';
+      
+      // Generate accordion items for each subject
+      faculty.subjects.forEach((subject, index) => {
+        const accordionItem = document.createElement('div');
+        accordionItem.className = 'accordion-item';
+        
+        const headerId = `heading${index}`;
+        const collapseId = `collapse${index}`;
+        
+        accordionItem.innerHTML = `
+          <h2 class="accordion-header" id="${headerId}">
+            <button class="accordion-button collapsed" type="button">
+              ${subject.name}
+            </button>
+          </h2>
+          <div id="${collapseId}" class="accordion-collapse" aria-labelledby="${headerId}">
+            <div class="accordion-body">
+              <div class="recommended">
+                <h5>Profesores Recomendados</h5>
+                <ul class="professor-list">
+                  ${subject.recommendedProfessors.map(professor => `<li><i class="fas fa-thumbs-up text-success me-2"></i>${professor}</li>`).join('')}
+                </ul>
+              </div>
+              
+              <div class="not-recommended">
+                <h5>Profesores No Recomendados</h5>
+                <ul class="professor-list">
+                  ${subject.notRecommendedProfessors.map(professor => `<li><i class="fas fa-thumbs-down text-danger me-2"></i>${professor}</li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        subjectsAccordion.appendChild(accordionItem);
+      });
+      
+      // Show faculty page
+      showPage('faculties-page');
+    }
+
+    // Event listeners
+    facultyBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const facultyId = btn.getAttribute('data-faculty');
+        loadFaculty(facultyId);
+      });
+    });
+
+    backToHomeFromOpinionsBtn.addEventListener('click', () => {
+      showPage('home-page');
+    });
+    
+    backToHomeFromFacultyBtn.addEventListener('click', () => {
+      showPage('home-page');
+    });
+
+    // Initial setup - ensure home page is shown
+    showPage('home-page');
+
+    // Search functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create flat list of all subjects with their faculty info
+      const allSubjects = [];
+      Object.keys(facultiesData).forEach(facultyId => {
+        const faculty = facultiesData[facultyId];
+        faculty.subjects.forEach(subject => {
+          allSubjects.push({
+            name: subject.name,
+            facultyId: facultyId,
+            facultyName: faculty.name
+          });
+        });
+      });
+      
+      // Search input event listener
+      document.getElementById('search-input').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        document.getElementById('search-results').innerHTML = '';
+        
+        if (searchTerm.length < 2) {
+          document.getElementById('search-results').style.display = 'none';
+          return;
+        }
+        
+        const matchedSubjects = allSubjects.filter(subject => 
+          subject.name.toLowerCase().includes(searchTerm)
+        );
+        
+        if (matchedSubjects.length > 0) {
+          document.getElementById('search-results').style.display = 'block';
+          
+          matchedSubjects.slice(0, 8).forEach(subject => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'search-result-item';
+            resultItem.innerHTML = `<div class="subject-name">${subject.name}</div>`;
+            
+            resultItem.addEventListener('click', () => {
+              loadFaculty(subject.facultyId);
+              // Find and open the specific accordion item
+              setTimeout(() => {
+                const accordionItems = document.querySelectorAll('.accordion-item');
+                accordionItems.forEach(item => {
+                  const button = item.querySelector('.accordion-button');
+                  if (button.textContent.trim() === subject.name) {
+                    button.click();
+                  }
+                });
+              }, 300);
+              
+              this.value = '';
+              document.getElementById('search-results').style.display = 'none';
+            });
+            
+            document.getElementById('search-results').appendChild(resultItem);
+          });
+        } else {
+          document.getElementById('search-results').style.display = 'block';
+          document.getElementById('search-results').innerHTML = '<div class="search-result-item">No se encontraron resultados</div>';
+        }
+      });
+      
+      // Close search results when clicking outside
+      document.addEventListener('click', function(e) {
+        if (e.target !== document.getElementById('search-input') && !document.getElementById('search-results').contains(e.target)) {
+          document.getElementById('search-results').style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
